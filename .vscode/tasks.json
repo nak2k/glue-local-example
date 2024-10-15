@@ -1,0 +1,38 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start example",
+      "type": "shell",
+      "command": "spark-submit",
+      "args": [
+        "${workspaceFolder}/src/example.py"
+      ],
+      "options": {
+        "env": {
+          "DEBUG": "1"
+        }
+      },
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "owner": "python",
+          "fileLocation": "absolute",
+          "pattern": [
+            {
+              "regexp": "^.*File \"(/home/glue_user/workspace/.*)\", line (\\d+?), in.*$",
+              "file": 1,
+              "line": 2,
+              "message": 0
+            }
+          ],
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "^.*",
+            "endsPattern": "^Waiting for debugger to attach"
+          }
+        }
+      ]
+    }
+  ]
+}

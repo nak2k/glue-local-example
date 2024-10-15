@@ -1,0 +1,46 @@
+{
+  "$schema": "https://raw.githubusercontent.com/devcontainers/spec/refs/heads/main/schemas/devContainer.schema.json",
+  "name": "Glue Local Development",
+  "build": {
+    "dockerfile": "./Dockerfile"
+  },
+  "containerEnv": {
+    "AWS_REGION": "ap-northeast-1",
+    "DISABLE_SSL": "true",
+    "PYTHONPATH": "/home/glue_user/workspace/site-packages"
+  },
+  "runArgs": [],
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/glue_user/workspace,type=bind",
+  "workspaceFolder": "/home/glue_user/workspace",
+  "mounts": [
+    {
+      "type": "bind",
+      "source": "${localEnv:HOME}/.aws",
+      "target": "/home/glue_user/.aws"
+    }
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "charliermarsh.ruff",
+        "ms-python.python",
+        "ms-python.debugpy",
+        "njpwerner.autodocstring"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/bin/python3",
+        "python.analysis.extraPaths": [
+          "/home/glue_user/aws-glue-libs/PyGlue:/home/glue_user/spark/python/lib/py4j-0.10.9-src.zip:/home/glue_user/spark/python/",
+          "/home/glue_user/.local/lib/python3.10/site-packages",
+          "/home/glue_user/workspace/site-packages"
+        ],
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff",
+          "editor.formatOnPaste": true,
+          "editor.formatOnSave": true,
+          "editor.formatOnType": true
+        }
+      }
+    }
+  }
+}
